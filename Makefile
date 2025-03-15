@@ -5,3 +5,7 @@ test:
 .PHONY: test_%
 test_%:
 	python3 -m unittest -v tests.Tests.test_$*
+
+.PHONY: style
+style:
+	black *.py
