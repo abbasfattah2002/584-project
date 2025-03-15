@@ -1,6 +1,7 @@
 import unittest
 from typing import List
 
+from udfs import register
 import duckdb
 from duckdb.typing import *
 
@@ -40,3 +41,39 @@ class Tests(unittest.TestCase):
 				self.assertEqual(wins, world_cup_titles[country], f'Saw {wins} wins, expected {country} to have {world_cup_titles[country]} wins')
 			else:
 				self.assertNotIn(country, world_cup_titles)
+	
+	def test_edit_distance(self):
+		con = duckdb.connect()
+		register(con)
+		res0 = con.execute("SELECT edit_distance('kitten', 'sitting')").fetchone()[0]
+		self.assertEqual(res0, 3)
+		res1 = con.execute("SELECT edit_distance('uninformed', 'uniformed')").fetchone()[0]
+		self.assertEqual(res1, 1)
+
+	def test_jaro_winkler(self):
+		con = duckdb.connect()
+		register(con)
+		res0 = con.execute("SELECT jaro_winkler('DwAyNE', 'DuANE')").fetchone()[0]
+		res1 = con.execute("SELECT jaro_winkler('TRATE', 'TRACE')").fetchone()[0]
+		self.assertAlmostEqual(res0, 0.84)
+		self.assertAlmostEqual(res1, 0.9066667)
+
+	def test_ss_names(self):
+		con = duckdb.connect()
+		register(con)
+		# change to loop through files in ssnames folder
+		con.execute("CREATE TABLE names_table (Name VARCHAR, Gender VARCHAR, Number INT, YOB INT)")
+		con.execute("INSERT INTO names_table (Name, Gender, Number, YOB) SELECT *, '2023' FROM read_csv_auto('social_security_names/yob2023.txt', HEADER=False)")
+
+		result = con.execute("SELECT * FROM names_table WHERE jaro_winkler(Name, 'Olivia') > 0.8").fetchall()
+		result2 = con.execute("SELECT * FROM names_table WHERE edit_distance(Name, 'Olivia') < 3").fetchall()
+		self.assertNotEqual(result, result2)
+
+
+	def test_trigram(self):
+		con = duckdb.connect()
+		register(con)
+		res = con.execute("SELECT trigram('word', 'two words')").fetchone()[0]
+
+		self.assertAlmostEqual(res, 4 / 11)
+		
