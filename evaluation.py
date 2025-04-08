@@ -1,6 +1,7 @@
 import duckdb
 from udfs import register
 
+JOHNATHAN = 'J[aeou]{1,2}[h]?n{1,2}[aeio]{0,2}[t]{1,2}[h]?[aeio]{0,2}n$'
 
 con = duckdb.connect()
 con.execute("PRAGMA enable_profiling")
@@ -17,4 +18,4 @@ con.execute("""
 			COPY ssa_names FROM 'fixed_ssa_data.csv'
 			""")
 
-print(con.execute("SELECT Name FROM ssa_names").fetchall())
+con.execute("SELECT Year, Name, Gender FROM ssa_names WHERE Name SIMILAR TO ?", (JOHNATHAN,)).fetchall()

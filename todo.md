@@ -1,0 +1,19 @@
+Put an X inside the checkbox when it's done
+- [ ] Settle on name regex
+- [ ] Install DBMS:
+	- [X] PostgreSQL
+	- [X] Microsoft SQL Server
+	- [ ] Oracle
+	- [ ] Elasticsearch
+- [ ] Figure out how to dump DuckDB results to csv
+- [ ] Create script for comparing results from csv's
+- [ ] Create queries for vertical comparisons (for each DBMS)
+	- [ ] PostgreSQL
+	- [ ] Microsoft SQL Server
+	- [ ] Oracle
+	- [ ] Elasticsearch
+- [ ] Choose metric+thresholds for the horizontal comparison
+- [ ] Create fuzzed name dataset (dataset with typos) (optional?)
+- [ ] Implement Union/Intersect custom similarity metric
+- [ ] C++ udfs(?)
+- [ ] Find out what we can pull from the profiler
