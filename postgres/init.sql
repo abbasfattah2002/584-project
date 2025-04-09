@@ -1,3 +1,7 @@
+DROP TABLE ssa_names;
+DROP TABLE johnathan;
+DROP TABLE katheryne;
+
 CREATE TABLE ssa_names(
 	Year INTEGER,
 	Name VARCHAR(50),
