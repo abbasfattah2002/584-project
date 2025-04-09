@@ -41,7 +41,7 @@ def soundex_evaluation(
     )
 
     print(
-        f"Soundex accuracy: {len(soundex.intersection(truth)) / len(truth) * 100}%"
+        f"Soundex accuracy: {len(soundex.intersection(truth)) / len(truth) * 100}%\n"
         f"Soundex false positive count: {len(soundex.difference(truth))}"
     )
 
@@ -62,5 +62,4 @@ con.execute(
 			"""
 )
 
-soundex_evaluation(con, JOHNATHAN, 'johnathan', True)
-
+soundex_evaluation(con, JOHNATHAN, "johnathan", True)
