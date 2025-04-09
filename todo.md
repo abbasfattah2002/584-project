@@ -11,7 +11,7 @@ Put an X inside the checkbox when it's done
 - [ ] Create script for comparing results from csv's
 - [ ] Create queries for vertical comparisons (for each DBMS)
 	- [ ] PostgreSQL
-	- [ ] Microsoft SQL Server
+	- [X] Microsoft SQL Server
 	- [ ] Oracle
 	- [ ] Elasticsearch
 - [ ] Choose metric+thresholds for the horizontal comparison

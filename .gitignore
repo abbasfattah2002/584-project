@@ -1,4 +1,2 @@
 env/
 __pycache__/
-*.csv
-!fixed_ssa_data.csv
