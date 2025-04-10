@@ -5,10 +5,17 @@ EXPLAIN ANALYZE SELECT Year, Name, Gender FROM ssa_names WHERE difference(Name, 
 CREATE TEMP TABLE tempjohnathan AS SELECT Year, Name, Gender FROM ssa_names WHERE difference(Name, 'Johnathan') = 4;
 
 SELECT 'Accuracy: ' ||
-	(SELECT COUNT(*) FROM tempjohnathan j
-	INNER JOIN johnathan s
-	ON s.Year = j.Year AND s.Name = j.Name AND s.Gender = j.Gender)
+	(SELECT COUNT(*) FROM tempjohnathan tj
+	INNER JOIN johnathan j
+	ON j.Year = tj.Year AND j.Name = tj.Name AND j.Gender = tj.Gender)
 || '/' || (SELECT COUNT(*) FROM johnathan);
+
+SELECT 'False Positives: ' || 
+	(SELECT COUNT(*) FROM tempjohnathan tj
+	 WHERE NOT EXISTS (
+		SELECT * FROM johnathan j
+		WHERE j.Year = tj.Year AND j.Name = tj.Name AND j.Gender = tj.Gender
+	 ));
 
 DROP TABLE tempjohnathan;
 
