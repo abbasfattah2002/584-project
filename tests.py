@@ -96,3 +96,33 @@ class Tests(unittest.TestCase):
         res = con.execute("SELECT trigram('word', 'two words')").fetchone()[0]
 
         self.assertAlmostEqual(res, 4 / 11)
+
+    def test_union(self):
+        con = duckdb.connect()
+        register(con)
+        con.execute(
+            "CREATE TABLE names_table (YOB VARCHAR, Name VARCHAR, Gender VARCHAR, Number INT)"
+        )
+        con.execute(
+            "INSERT INTO names_table (YOB, Name, Gender, Number) SELECT *, FROM read_csv_auto('fixed_ssa_data.csv', HEADER=False) WHERE column0 = '2023'"
+        )
+        result = con.execute(
+            "SELECT * FROM names_table WHERE custom_union(Name, 'Olivia')"
+        ).fetchall()
+        print(result)
+
+
+    def test_intersect(self):
+        con = duckdb.connect()
+        register(con)
+        con.execute(
+            "CREATE TABLE names_table (YOB VARCHAR, Name VARCHAR, Gender VARCHAR, Number INT)"
+        )
+        con.execute(
+            "INSERT INTO names_table (YOB, Name, Gender, Number) SELECT *, FROM read_csv_auto('fixed_ssa_data.csv', HEADER=False) WHERE column0 = '2023'"
+        )
+        result = con.execute(
+            "SELECT * FROM names_table WHERE custom_intersect(Name, 'Johnathan')"
+        ).fetchall()
+        print(result)
+

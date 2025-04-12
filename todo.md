@@ -16,6 +16,6 @@ Put an X inside the checkbox when it's done
 	- [ ] Elasticsearch
 - [ ] Choose metric+thresholds for the horizontal comparison
 - [ ] Create fuzzed name dataset (dataset with typos) (optional?)
-- [ ] Implement Union/Intersect custom similarity metric
+- [X] Implement Union/Intersect custom similarity metric
 - [ ] C++ udfs(?)
 - [ ] Find out what we can pull from the profiler

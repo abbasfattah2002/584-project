@@ -2,6 +2,5 @@ duckdb
 editdistance
 jellyfish
 pandas
-re
-random
-nlpaug.augmenter.char
+nlpaug
+jaro-winkler
