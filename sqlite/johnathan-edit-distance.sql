@@ -3,11 +3,11 @@
 .load './spellfix1'
 
 .timer ON
-SELECT Year, Name, Gender FROM ssa_names WHERE editdist3(Name, 'Johnathan') < 3;
+SELECT Year, Name, Gender FROM ssa_names WHERE editdist3(Name, 'Johnathan') < 300;
 .timer OFF
 
 CREATE TEMP TABLE temp AS
-SELECT Year, Name, Gender FROM ssa_names WHERE editdist3(Name, 'Johnathan') < 3;
+SELECT Year, Name, Gender FROM ssa_names WHERE editdist3(Name, 'Johnathan') < 300;
 
 SELECT 'Accuracy: ' ||
 	(SELECT COUNT(*) FROM temp t
@@ -24,4 +24,4 @@ SELECT 'False Positives: ' ||
 
 DROP TABLE temp;
 
--- sqlite3 -header -csv data.db "SELECT load_extension('./spellfix1'); SELECT Year, Name, Gender FROM ssa_names WHERE editdist3(Name, 'Johnathan') < 3;" > johnathan-edit-distance-sub3.csv
+-- sqlite3 -header -csv data.db "SELECT load_extension('./spellfix1'); SELECT Year, Name, Gender FROM ssa_names WHERE editdist3(Name, 'Johnathan') < 300;" > johnathan-edit-distance-sub3.csv

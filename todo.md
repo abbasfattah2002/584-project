@@ -12,7 +12,7 @@ Put an X inside the checkbox when it's done
 - [ ] Create queries for vertical comparisons (for each DBMS)
 	- [X] PostgreSQL
 	- [X] Microsoft SQL Server
-	- [ ] sqlite
+	- [X] sqlite
 	- [ ] Elasticsearch
 - [ ] Choose metric+thresholds for the horizontal comparison
 - [ ] Create fuzzed name dataset (dataset with typos) (optional?)
