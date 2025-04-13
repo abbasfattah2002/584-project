@@ -1,0 +1,73 @@
+Exported edit_johnathan_truth.csv
+edit_johnathan accuracy: 0.00%
+edit_johnathan false positives: 3687
+
+Exported edit_johnathan_truth.csv
+edit_johnathan accuracy: 98.85%
+edit_johnathan false positives: 318
+
+Exported edit_johnathan_truth.csv
+edit_johnathan accuracy: 100.00%
+edit_johnathan false positives: 1055
+
+Exported edit_johnathan_truth.csv
+edit_johnathan accuracy: 100.00%
+edit_johnathan false positives: 4742
+
+Exported trigram_johnathan_truth.csv
+trigram_johnathan accuracy: 98.24%
+trigram_johnathan false positives: 5290
+
+Exported trigram_johnathan_truth.csv
+trigram_johnathan accuracy: 60.92%
+trigram_johnathan false positives: 77
+
+Exported trigram_johnathan_truth.csv
+trigram_johnathan accuracy: 11.07%
+trigram_johnathan false positives: 0
+
+Exported katheryne.csv
+Soundex accuracy: 0.0%
+Soundex false positive count: 1663
+
+Exported jaro_katheryne_truth.csv
+jaro_katheryne accuracy: 32.97%
+jaro_katheryne false positives: 6
+
+Exported jaro_katheryne_truth.csv
+jaro_katheryne accuracy: 5.51%
+jaro_katheryne false positives: 0
+
+Exported jaro_katheryne_truth.csv
+jaro_katheryne accuracy: 0.00%
+jaro_katheryne false positives: 0
+
+Exported edit_katheryne_truth.csv
+edit_katheryne accuracy: 43.43%
+edit_katheryne false positives: 6
+
+Exported edit_katheryne_truth.csv
+edit_katheryne accuracy: 6.86%
+edit_katheryne false positives: 4103
+
+Exported edit_katheryne_truth.csv
+edit_katheryne accuracy: 43.43%
+edit_katheryne false positives: 6
+
+Exported edit_katheryne_truth.csv
+edit_katheryne accuracy: 93.14%
+edit_katheryne false positives: 714
+
+Exported edit_katheryne_truth.csv
+edit_katheryne accuracy: 100.00%
+edit_katheryne false positives: 4817
+
+Exported trigram_katheryne_truth.csv
+trigram_katheryne accuracy: 22.05%
+trigram_katheryne false positives: 66
+Exported trigram_katheryne_truth.csv
+trigram_katheryne accuracy: 5.51%
+trigram_katheryne false positives: 0
+Exported trigram_katheryne_truth.csv
+trigram_katheryne accuracy: 0.00%
+trigram_katheryne false positives: 0

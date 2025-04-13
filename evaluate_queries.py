@@ -7,18 +7,36 @@ con = duckdb.connect()
 # Register UDFs from your custom module
 register(con)
 
-# Run EXPLAIN ANALYZE on Levenshtein query
+JOHNATHAN = 'J[aeou]{1,2}[h]?n{1,2}[aeio]{0,2}[t]{1,2}[h]?[aeio]{0,2}n$'
+
+con.execute("""
+			CREATE TABLE ssa_names  (
+				Year INTEGER,
+				Name VARCHAR,
+				Gender CHAR,
+				Count INTEGER
+			);
+			COPY ssa_names FROM 'fixed_ssa_data.csv'
+			""")
+
+result = con.execute("SELECT Year, Name, Gender FROM ssa_names WHERE Name SIMILAR TO ?", (JOHNATHAN,)).fetchall()
+# for row in result:
+#     print(row)  # Should print actual plan content if it ran correctly
+
+
+
+# # Optimized query with filtering
 query = """
-EXPLAIN ANALYZE
-SELECT column0 AS name, edit_distance(column0, 'Jonathan') AS similarity_score
-FROM read_csv_auto('fixed_ssa_data.csv', HEADER=False) AS ssa_baby_names
-ORDER BY similarity_score;
+SELECT name, edit_distance(Name, 'Jonathan') AS similarity_score
+FROM ssa_names
+WHERE year = 2020
+ORDER BY similarity_score
+LIMIT 10;
 """
 
-# Execute and print the execution plan + timing
-explain_output = con.execute(query).fetchall()
+# # Execute and fetch EXPLAIN ANALYZE output
+result = con.execute(query).fetchall()
+print("Execution Plan + Timing:\n")
+for row in result:
+    print(row[0])  # Should print actual plan content if it ran correctly
 
-# Print formatted EXPLAIN ANALYZE output
-print("Execution Plan + Timing:")
-for row in explain_output:
-    print(row[0])
