@@ -1,8 +1,8 @@
 CREATE EXTENSION IF NOT EXISTS fuzzystrmatch;
 
-EXPLAIN ANALYZE SELECT Year, Name, Gender FROM ssa_names WHERE levenshtein(Name, 'Johnathan') < 4;
+EXPLAIN ANALYZE SELECT Year, Name, Gender FROM ssa_names WHERE levenshtein(Name, 'Johnathan') < 3;
 
-CREATE TEMP TABLE temp AS SELECT Year, Name, Gender FROM ssa_names WHERE levenshtein(Name, 'Johnathan') < 4;
+CREATE TEMP TABLE temp AS SELECT Year, Name, Gender FROM ssa_names WHERE levenshtein(Name, 'Johnathan') < 3;
 
 SELECT 'Accuracy: ' ||
 	(SELECT COUNT(*) FROM temp t
@@ -19,4 +19,4 @@ SELECT 'False Positives: ' ||
 
 DROP TABLE temp;
 
-\copy ( SELECT Year, Name, Gender FROM ssa_names WHERE levenshtein(Name, 'Johnathan') < 4 ORDER BY Year ASC, Name ASC, Gender ASC) TO './postgres/johnathan-edit-distance.csv' WITH CSV DELIMITER ',';
+\copy ( SELECT Year, Name, Gender FROM ssa_names WHERE levenshtein(Name, 'Johnathan') < 3 ORDER BY Year ASC, Name ASC, Gender ASC) TO './postgres/johnathan-edit-distance-sub3.csv' WITH CSV DELIMITER ',';

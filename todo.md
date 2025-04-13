@@ -5,14 +5,14 @@ Put an X inside the checkbox when it's done
 - [ ] Install DBMS:
 	- [X] PostgreSQL
 	- [X] Microsoft SQL Server
-	- [ ] Oracle
+	- [X] sqlite
 	- [ ] Elasticsearch
 - [X] Figure out how to dump DuckDB results to csv
 - [ ] Create script for comparing results from csv's
 - [ ] Create queries for vertical comparisons (for each DBMS)
-	- [ ] PostgreSQL
+	- [X] PostgreSQL
 	- [X] Microsoft SQL Server
-	- [ ] Oracle
+	- [ ] sqlite
 	- [ ] Elasticsearch
 - [ ] Choose metric+thresholds for the horizontal comparison
 - [ ] Create fuzzed name dataset (dataset with typos) (optional?)
