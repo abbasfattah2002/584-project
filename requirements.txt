@@ -4,3 +4,4 @@ jellyfish
 pandas
 nlpaug
 jaro-winkler
+oracledb

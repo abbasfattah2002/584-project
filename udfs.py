@@ -48,20 +48,27 @@ def trigram(a: str, s: str) -> float:
 
 
 def custom_union(a: str, b: str) -> bool:
-    if edit_distance(a,b) < 3:
+    if edit_distance(a, b) < 3:
         return True
     elif soundex(a) == soundex(b):
         return True
-    elif jaro_winkler(a,b) > 0.8:
+    elif jaro_winkler(a, b) > 0.8:
         return True
-    elif trigram(a,b) > 0.7:
+    elif trigram(a, b) > 0.7:
         return True
     return False
 
+
 def custom_intersect(a: str, b: str) -> bool:
-    if (edit_distance(a,b) < 5) and (edit_distance(soundex(a),soundex(b)) < 5) and (jaro_winkler(a,b) > 0.5) and (trigram(a,b) > 0.5):
+    if (
+        (edit_distance(a, b) < 5)
+        and (edit_distance(soundex(a), soundex(b)) < 5)
+        and (jaro_winkler(a, b) > 0.5)
+        and (trigram(a, b) > 0.5)
+    ):
         return True
     return False
+
 
 def register(con):
     # to call in other files, add this line: from udfs import register

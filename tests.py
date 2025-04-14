@@ -111,7 +111,6 @@ class Tests(unittest.TestCase):
         ).fetchall()
         print(result)
 
-
     def test_intersect(self):
         con = duckdb.connect()
         register(con)
@@ -125,4 +124,3 @@ class Tests(unittest.TestCase):
             "SELECT * FROM names_table WHERE custom_intersect(Name, 'Johnathan')"
         ).fetchall()
         print(result)
-

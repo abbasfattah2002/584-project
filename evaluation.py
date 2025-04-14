@@ -66,9 +66,7 @@ def metric_evaluation(
     if not run_analysis:
         return
 
-    truth = set(
-        truth_query.fetchall()
-    )
+    truth = set(truth_query.fetchall())
 
     con.execute("PRAGMA enable_profiling")
     con.execute("PRAGMA enable_profile")
@@ -99,7 +97,6 @@ def metric_evaluation(
     )
 
 
-
 con = duckdb.connect()
 register(con)
 
@@ -128,7 +125,7 @@ metric_evaluation(
     "jaro_johnathan_85",
     "Johnathan",
     "jaro_winkler(Name, 'Johnathan') > 0.85",
-    run_analysis=True
+    run_analysis=True,
 )
 # Jaro-Winkler
 metric_evaluation(
@@ -137,7 +134,7 @@ metric_evaluation(
     "jaro_johnathan_90",
     "Johnathan",
     "jaro_winkler(Name, 'Johnathan') > 0.90",
-    run_analysis=True
+    run_analysis=True,
 )
 # Jaro-Winkler
 metric_evaluation(
@@ -146,7 +143,7 @@ metric_evaluation(
     "jaro_johnathan_95",
     "Johnathan",
     "jaro_winkler(Name, 'Johnathan') > 0.95",
-    run_analysis=True
+    run_analysis=True,
 )
 
 
@@ -157,7 +154,7 @@ metric_evaluation(
     "edit_johnathan_eq_4",
     "Johnathan",
     "edit_distance(Name, 'Johnathan') = 4",
-    run_analysis=True
+    run_analysis=True,
 )
 # Edit Distance
 metric_evaluation(
@@ -166,7 +163,7 @@ metric_evaluation(
     "edit_johnathan_lt_3",
     "Johnathan",
     "edit_distance(Name, 'Johnathan') < 3",
-    run_analysis=True
+    run_analysis=True,
 )
 # Edit Distance
 metric_evaluation(
@@ -175,7 +172,7 @@ metric_evaluation(
     "edit_johnathan_lt_4",
     "Johnathan",
     "edit_distance(Name, 'Johnathan') < 4",
-    run_analysis=True
+    run_analysis=True,
 )
 # Edit Distance
 metric_evaluation(
@@ -184,7 +181,7 @@ metric_evaluation(
     "edit_johnathan_lt_5",
     "Johnathan",
     "edit_distance(Name, 'Johnathan') < 5",
-    run_analysis=True
+    run_analysis=True,
 )
 
 
@@ -195,7 +192,7 @@ metric_evaluation(
     "trigram_johnathan_gt_25",
     "Johnathan",
     "trigram(Name, 'Johnathan') > 0.25",
-    run_analysis=True
+    run_analysis=True,
 )
 # Trigram similarity
 metric_evaluation(
@@ -204,7 +201,7 @@ metric_evaluation(
     "trigram_johnathan_gt_.5",
     "Johnathan",
     "trigram(Name, 'Johnathan') > 0.5",
-    run_analysis=True
+    run_analysis=True,
 )
 # Trigram similarity
 metric_evaluation(
@@ -213,7 +210,7 @@ metric_evaluation(
     "trigram_johnathan_gt_75",
     "Johnathan",
     "trigram(Name, 'Johnathan') > 0.75",
-    run_analysis=True
+    run_analysis=True,
 )
 
 
@@ -226,7 +223,7 @@ metric_evaluation(
     "soundex_katheryne",
     "Katheryne",
     "soundex(Name) = soundex('Katheryne')",
-    run_analysis=True
+    run_analysis=True,
 )
 
 # Jaro-Winkler
@@ -236,7 +233,7 @@ metric_evaluation(
     "jaro_katheryne_85",
     "katheryne",
     "jaro_winkler(Name, 'katheryne') > 0.85",
-    run_analysis=True
+    run_analysis=True,
 )
 # Jaro-Winkler
 metric_evaluation(
@@ -245,7 +242,7 @@ metric_evaluation(
     "jaro_katheryne_90",
     "katheryne",
     "jaro_winkler(Name, 'katheryne') > 0.90",
-    run_analysis=True
+    run_analysis=True,
 )
 # Jaro-Winkler
 metric_evaluation(
@@ -254,7 +251,7 @@ metric_evaluation(
     "jaro_katheryne_95",
     "katheryne",
     "jaro_winkler(Name, 'katheryne') > 0.95",
-    run_analysis=True
+    run_analysis=True,
 )
 
 
@@ -265,7 +262,7 @@ metric_evaluation(
     "edit_katheryne_eq_4",
     "katheryne",
     "edit_distance(Name, 'katheryne') = 4",
-    run_analysis=True
+    run_analysis=True,
 )
 # Edit Distance
 metric_evaluation(
@@ -274,7 +271,7 @@ metric_evaluation(
     "edit_katheryne_lt_3",
     "katheryne",
     "edit_distance(Name, 'katheryne') < 3",
-    run_analysis=True
+    run_analysis=True,
 )
 # Edit Distance
 metric_evaluation(
@@ -283,7 +280,7 @@ metric_evaluation(
     "edit_katheryne_lt_4",
     "katheryne",
     "edit_distance(Name, 'katheryne') < 4",
-    run_analysis=True
+    run_analysis=True,
 )
 # Edit Distance
 metric_evaluation(
@@ -292,7 +289,7 @@ metric_evaluation(
     "edit_katheryne_lt_5",
     "katheryne",
     "edit_distance(Name, 'katheryne') < 5",
-    run_analysis=True
+    run_analysis=True,
 )
 
 
@@ -303,7 +300,7 @@ metric_evaluation(
     "trigram_katheryne_gt_25",
     "katheryne",
     "trigram(Name, 'katheryne') > 0.25",
-    run_analysis=True
+    run_analysis=True,
 )
 # Trigram similarity
 metric_evaluation(
@@ -312,7 +309,7 @@ metric_evaluation(
     "trigram_katheryne_gt_5",
     "katheryne",
     "trigram(Name, 'katheryne') > 0.5",
-    run_analysis=True
+    run_analysis=True,
 )
 # Trigram similarity
 metric_evaluation(
@@ -321,5 +318,5 @@ metric_evaluation(
     "trigram_katheryne_gt_75",
     "katheryne",
     "trigram(Name, 'katheryne') > 0.75",
-    run_analysis=True
+    run_analysis=True,
 )

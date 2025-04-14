@@ -7,9 +7,10 @@ con = duckdb.connect()
 # Register UDFs from your custom module
 register(con)
 
-JOHNATHAN = 'J[aeou]{1,2}[h]?n{1,2}[aeio]{0,2}[t]{1,2}[h]?[aeio]{0,2}n$'
+JOHNATHAN = "J[aeou]{1,2}[h]?n{1,2}[aeio]{0,2}[t]{1,2}[h]?[aeio]{0,2}n$"
 
-con.execute("""
+con.execute(
+    """
 			CREATE TABLE ssa_names  (
 				Year INTEGER,
 				Name VARCHAR,
@@ -17,12 +18,14 @@ con.execute("""
 				Count INTEGER
 			);
 			COPY ssa_names FROM 'fixed_ssa_data.csv'
-			""")
+			"""
+)
 
-result = con.execute("SELECT Year, Name, Gender FROM ssa_names WHERE Name SIMILAR TO ?", (JOHNATHAN,)).fetchall()
+result = con.execute(
+    "SELECT Year, Name, Gender FROM ssa_names WHERE Name SIMILAR TO ?", (JOHNATHAN,)
+).fetchall()
 # for row in result:
 #     print(row)  # Should print actual plan content if it ran correctly
-
 
 
 # # Optimized query with filtering
@@ -39,4 +42,3 @@ result = con.execute(query).fetchall()
 print("Execution Plan + Timing:\n")
 for row in result:
     print(row[0])  # Should print actual plan content if it ran correctly
-
