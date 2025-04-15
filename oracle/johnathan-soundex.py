@@ -21,9 +21,7 @@ with oracledb.connect(
         truth = set(cursor.execute("SELECT * FROM johnathan").fetchall())
 
         print(
-            f"Soundex accuracy: {len(result.intersection(truth)) / len(truth) * 100}%\n"
-            f"False positive count: {len(result.difference(truth))}\n"
-            f"Exeuction time: {time_elapsed} seconds\n"
+            f"Soundex accuracy for Johnathan: {len(result.intersection(truth)) / len(truth) * 100}%"
         )
-
-
+        print(f"False positive count: {len(result.difference(truth))}")
+        print(f"Exeuction time: {time_elapsed} seconds")
