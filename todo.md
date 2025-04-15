@@ -2,20 +2,20 @@ Put an X inside the checkbox when it's done
 - [X] Settle on name regex
   - Turns out using grep -E is not 1:1 with DuckDB's matching
   - Notably, grep would capture 'Hart' with the pattern 'a' (since a is in Hart) but not DuckDB
-- [ ] Install DBMS:
+- [X] Install DBMS:
 	- [X] PostgreSQL
 	- [X] Microsoft SQL Server
 	- [X] sqlite
-	- [ ] Oracle
+	- [X] Oracle
 - [X] Figure out how to dump DuckDB results to csv
 - [ ] Create script for comparing results from csv's
-- [ ] Create queries for vertical comparisons (for each DBMS)
+- [X] Create queries for vertical comparisons (for each DBMS)
 	- [X] PostgreSQL
 	- [X] Microsoft SQL Server
 	- [X] sqlite
-	- [ ] Oracle
+	- [X] Oracle
 - [ ] Choose metric+thresholds for the horizontal comparison
 - [ ] Create fuzzed name dataset (dataset with typos) (optional?)
 - [X] Implement Union/Intersect custom similarity metric
 - [ ] C++ udfs(?)
-- [ ] Find out what we can pull from the profiler
+- [X] Find out what we can pull from the profiler (kinda?)

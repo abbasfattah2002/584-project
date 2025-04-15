@@ -15,7 +15,6 @@ with oracledb.connect(
             "SELECT Year, Name, Gender FROM ssa_names WHERE SOUNDEX(NAME) = SOUNDEX('Katheryne')"
         )
         time_elapsed = time.time() - before
-        print(f"Exeuction time: {time_elapsed} seconds")
 
         result = set(result.fetchall())
 
@@ -23,7 +22,8 @@ with oracledb.connect(
 
         print(
             f"Soundex accuracy: {len(result.intersection(truth)) / len(truth) * 100}%\n"
-            f"Soundex false positive count: {len(result.difference(truth))}"
+            f"False positive count: {len(result.difference(truth))}\n"
+            f"Exeuction time: {time_elapsed} seconds\n"
         )
 
 
