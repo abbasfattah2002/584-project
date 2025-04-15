@@ -48,13 +48,13 @@ def trigram(a: str, s: str) -> float:
 
 
 def custom_union(a: str, b: str) -> bool:
-    if edit_distance(a, b) < 3:
+    if edit_distance(a, b) < 2:
         return True
     elif soundex(a) == soundex(b):
         return True
-    elif jaro_winkler(a, b) > 0.8:
+    elif jaro_winkler(a, b) > 0.95:
         return True
-    elif trigram(a, b) > 0.7:
+    elif trigram(a, b) > 0.95:
         return True
     return False
 
@@ -69,6 +69,41 @@ def custom_intersect(a: str, b: str) -> bool:
         return True
     return False
 
+def tuned_metric(a: str, b: str) -> bool:
+    if(edit_distance(a, b)/max(len(a),len(b)) > 0.333335) or (trigram(a, b) < 0.1): 
+        return False
+    if (jaro_winkler(a, b) > 0.74995): 
+        if ((edit_distance(soundex(a), soundex(b)) < 1.1)):
+            return True
+    return False
+
+# best design while maintaining 90% or above accuracy:
+# Johnathan: 99.04, 1745
+# Katheryne: 93.11, 1663
+# trigram filter:  0.075 <= x <= 0.1
+# normalized edit distance filter: 0.33333 <  x <= 0.333335
+# jaro_winkler filter: 0.74995 <= x < 0.75 
+# Allowed soundex diff: 1,0
+
+#new
+def custom_metric(a: str, b: str) -> bool:
+    if((trigram(a, b) < 0.0555) or 
+       (jaro_winkler(a, b) < 0.6875) or 
+       (edit_distance(a, b)/max(len(a),len(b)) > 0.6675) or 
+       (edit_distance(soundex(a), soundex(b)) > 1)
+       ):
+        return False
+    return True
+
+# trigram:
+# 100%: 0.0555 <= x < 0.056
+#jaro_winkler:
+# 100%: 0.6875 <= x < 0.69
+#Normalized Edit Distance Barriers:
+# 100%: 0.665 < x <= 0.6675
+#soundex:
+# 100%: > 1
+
 
 def register(con):
     # to call in other files, add this line: from udfs import register
@@ -79,4 +114,5 @@ def register(con):
     con.create_function("soundex", soundex, [VARCHAR], VARCHAR)
     con.create_function("trigram", trigram, [VARCHAR, VARCHAR], FLOAT)
     con.create_function("custom_union", custom_union, [VARCHAR, VARCHAR], bool)
+    con.create_function("custom_metric", custom_metric, [VARCHAR, VARCHAR], bool)
     con.create_function("custom_intersect", custom_intersect, [VARCHAR, VARCHAR], bool)
