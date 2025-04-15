@@ -12,14 +12,14 @@ with oracledb.connect(
     with connection.cursor() as cursor:
         before = time.time()
         result = cursor.execute(
-            "SELECT Year, Name, Gender FROM ssa_names WHERE SOUNDEX(NAME) = SOUNDEX('Johnathan')"
+            "SELECT Year, Name, Gender FROM ssa_names WHERE SOUNDEX(NAME) = SOUNDEX('Katheryne')"
         )
         time_elapsed = time.time() - before
         print(f"Exeuction time: {time_elapsed} seconds")
 
         result = set(result.fetchall())
 
-        truth = set(cursor.execute("SELECT * FROM johnathan").fetchall())
+        truth = set(cursor.execute("SELECT * FROM katheryne").fetchall())
 
         print(
             f"Soundex accuracy: {len(result.intersection(truth)) / len(truth) * 100}%\n"
