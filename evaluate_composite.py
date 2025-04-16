@@ -25,7 +25,7 @@ for name in candidate_names:
 
     lev = editdistance.eval(name.lower(), reference.lower())
     snd = jellyfish.soundex(name)
-    
+
     if lev <= 2:  # typo detection
         levenshtein_matches.append((name, lev))
     if snd == reference_soundex:
@@ -48,4 +48,6 @@ for name in sorted(union_matches):
     print(name)
 
 # You can also export them:
-pd.DataFrame({"Name": list(union_matches)}).to_csv("names/johnathan_fuzzed_candidates.csv", index=False)
+pd.DataFrame({"Name": list(union_matches)}).to_csv(
+    "names/johnathan_fuzzed_candidates.csv", index=False
+)

@@ -41,7 +41,7 @@ def soundex_evaluation(
     )
 
     print(
-        f"Soundex accuracy: {len(soundex.intersection(truth)) / len(truth) * 100}%\n"
+        f"Soundex accuracy for {csv_out_name}: {len(soundex.intersection(truth)) / len(truth) * 100}%\n"
         f"Soundex false positive count: {len(soundex.difference(truth))}"
     )
 
@@ -92,7 +92,7 @@ def metric_evaluation(
         )
 
     print(
-        f"{csv_out_name} accuracy: {len(results.intersection(truth)) / len(truth) * 100:.2f}%\n"
+        f"{csv_out_name} accuracy for {csv_out_name}: {len(results.intersection(truth)) / len(truth) * 100:.2f}%\n"
         f"{csv_out_name} false positives: {len(results.difference(truth))}"
     )
 
@@ -103,14 +103,14 @@ register(con)
 # Create a table from a CSV
 con.execute(
     """
-			CREATE TABLE ssa_names  (
-				Year INTEGER,
-				Name VARCHAR,
-				Gender CHAR,
-				Count INTEGER
-			);
-			COPY ssa_names FROM 'fixed_ssa_data.csv'
-			"""
+    CREATE TABLE ssa_names  (
+        Year INTEGER,
+        Name VARCHAR,
+        Gender CHAR,
+        Count INTEGER
+    );
+    COPY ssa_names FROM 'fixed_ssa_data.csv'
+    """
 )
 
 
@@ -147,15 +147,6 @@ metric_evaluation(
 )
 
 
-# Edit Distance
-metric_evaluation(
-    con,
-    JOHNATHAN,
-    "edit_johnathan_eq_4",
-    "Johnathan",
-    "edit_distance(Name, 'Johnathan') = 4",
-    run_analysis=True,
-)
 # Edit Distance
 metric_evaluation(
     con,
@@ -214,7 +205,7 @@ metric_evaluation(
 )
 
 
-# --------------------- Katherine -----------------------
+# --------------------- Katheryne -----------------------
 
 # Soundex
 metric_evaluation(
@@ -225,6 +216,7 @@ metric_evaluation(
     "soundex(Name) = soundex('Katheryne')",
     run_analysis=True,
 )
+
 
 # Jaro-Winkler
 metric_evaluation(
@@ -255,15 +247,6 @@ metric_evaluation(
 )
 
 
-# Edit Distance
-metric_evaluation(
-    con,
-    KATHERYNE,
-    "edit_katheryne_eq_4",
-    "katheryne",
-    "edit_distance(Name, 'katheryne') = 4",
-    run_analysis=True,
-)
 # Edit Distance
 metric_evaluation(
     con,

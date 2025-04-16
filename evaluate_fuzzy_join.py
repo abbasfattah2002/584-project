@@ -48,6 +48,7 @@ RYAN = "R[iy]a[n]{1,2}e?"
 #     print(f"{csv_out_name} Join Accuracy: {accuracy:.2f}%")
 #     print(f"{csv_out_name} False Positives: {len(false_positives)}")
 
+
 def fuzzy_join_evaluation_with_truth(
     con: duckdb.DuckDBPyConnection,
     truth_file: str,
@@ -121,7 +122,7 @@ fuzzy_join_evaluation_with_truth(
     con,
     "johnathan.csv",
     "soundex(t1980.Name) = soundex(t2023.Name)",
-    "join_johnathan_soundex"
+    "join_johnathan_soundex",
 )
 
 # Fuzzy join using Edit Distance
@@ -130,7 +131,7 @@ fuzzy_join_evaluation_with_truth(
     "johnathan.csv",
     "edit_distance(t1980.Name, t2023.Name) <= 2",
     "join_johnathan_edit2",
-    threshold=2
+    threshold=2,
 )
 
 # Fuzzy join using Trigram
@@ -139,7 +140,7 @@ fuzzy_join_evaluation_with_truth(
     "johnathan.csv",
     "trigram(t1980.Name, t2023.Name) > 0.4",
     "join_johnathan_trigram40",
-    threshold=0.4
+    threshold=0.4,
 )
 
 # Fuzzy join using Jaro-Winkler
@@ -148,5 +149,5 @@ fuzzy_join_evaluation_with_truth(
     "johnathan.csv",
     "jaro_winkler(t1980.Name, t2023.Name) > 0.85",
     "join_johnathan_jaro85",
-    threshold=0.85
+    threshold=0.85,
 )
