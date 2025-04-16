@@ -19,4 +19,4 @@ SELECT 'False Positives: ' ||
 
 DROP TABLE temp;
 
-\copy ( SELECT Year, Name, Gender FROM ssa_names WHERE levenshtein(Name, 'Katheryne') < 5 ORDER BY Year ASC, Name ASC, Gender ASC) TO './postgres/katheryne-edit-distance.csv' WITH CSV DELIMITER ',';
+\copy ( SELECT Year, Name, Gender FROM ssa_names WHERE levenshtein(Name, 'Katheryne') < 5 ORDER BY Year ASC, Name ASC, Gender ASC) TO './postgres/katheryne-edit-distance-sub5.csv' WITH CSV DELIMITER ',';
