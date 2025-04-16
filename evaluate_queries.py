@@ -42,3 +42,5 @@ result = con.execute(query).fetchall()
 print("Execution Plan + Timing:\n")
 for row in result:
     print(row[0])  # Should print actual plan content if it ran correctly
+
+
