@@ -72,24 +72,24 @@ def metric_evaluation(
     con.execute("PRAGMA enable_profile")
 
     if threshold is not None:
-        results = set(
-            con.execute(
-                f"""
-                SELECT Year, Name, Gender FROM ssa_names
-                WHERE {metric_sql} AND Name != '{reference_name}'
-                """
-            ).fetchall()
+        results_query = con.sql(
+            f"""
+            SELECT Year, Name, Gender FROM ssa_names
+            WHERE {metric_sql} AND Name != '{reference_name}'
+            """
         )
     else:
-        # Use raw metric if no thresholding needed (e.g., Soundex equality)
-        results = set(
-            con.execute(
-                f"""
-                SELECT Year, Name, Gender FROM ssa_names
-                WHERE {metric_sql}
-                """
-            ).fetchall()
+        results_query = con.sql(
+            f"""
+            SELECT Year, Name, Gender FROM ssa_names
+            WHERE {metric_sql}
+            """
         )
+
+    results = set(results_query.fetchall())
+    results_query_df = results_query.df()
+    results_query_df.to_csv(f"names/{csv_out_name}_results.csv", index=False)
+    print(f"Exported {csv_out_name}_results.csv")
 
     print(
         f"{csv_out_name} accuracy for {csv_out_name}: {len(results.intersection(truth)) / len(truth) * 100:.2f}%\n"
@@ -116,93 +116,93 @@ con.execute(
 
 # --------------------- JOHNATHAN -----------------------
 
-soundex_evaluation(con, JOHNATHAN, "soundex_johnathan", True)
+# soundex_evaluation(con, JOHNATHAN, "soundex_johnathan", True)
 
-# Jaro-Winkler
-metric_evaluation(
-    con,
-    JOHNATHAN,
-    "jaro_johnathan_85",
-    "Johnathan",
-    "jaro_winkler(Name, 'Johnathan') > 0.85",
-    run_analysis=True,
-)
-# Jaro-Winkler
-metric_evaluation(
-    con,
-    JOHNATHAN,
-    "jaro_johnathan_90",
-    "Johnathan",
-    "jaro_winkler(Name, 'Johnathan') > 0.90",
-    run_analysis=True,
-)
-# Jaro-Winkler
-metric_evaluation(
-    con,
-    JOHNATHAN,
-    "jaro_johnathan_95",
-    "Johnathan",
-    "jaro_winkler(Name, 'Johnathan') > 0.95",
-    run_analysis=True,
-)
-
-
-# Edit Distance
-metric_evaluation(
-    con,
-    JOHNATHAN,
-    "edit_johnathan_lt_3",
-    "Johnathan",
-    "edit_distance(Name, 'Johnathan') < 3",
-    run_analysis=True,
-)
-# Edit Distance
-metric_evaluation(
-    con,
-    JOHNATHAN,
-    "edit_johnathan_lt_4",
-    "Johnathan",
-    "edit_distance(Name, 'Johnathan') < 4",
-    run_analysis=True,
-)
-# Edit Distance
-metric_evaluation(
-    con,
-    JOHNATHAN,
-    "edit_johnathan_lt_5",
-    "Johnathan",
-    "edit_distance(Name, 'Johnathan') < 5",
-    run_analysis=True,
-)
+# # Jaro-Winkler
+# metric_evaluation(
+#     con,
+#     JOHNATHAN,
+#     "jaro_johnathan_85",
+#     "Johnathan",
+#     "jaro_winkler(Name, 'Johnathan') > 0.85",
+#     run_analysis=True,
+# )
+# # Jaro-Winkler
+# metric_evaluation(
+#     con,
+#     JOHNATHAN,
+#     "jaro_johnathan_90",
+#     "Johnathan",
+#     "jaro_winkler(Name, 'Johnathan') > 0.90",
+#     run_analysis=True,
+# )
+# # Jaro-Winkler
+# metric_evaluation(
+#     con,
+#     JOHNATHAN,
+#     "jaro_johnathan_95",
+#     "Johnathan",
+#     "jaro_winkler(Name, 'Johnathan') > 0.95",
+#     run_analysis=True,
+# )
 
 
-# Trigram similarity
-metric_evaluation(
-    con,
-    JOHNATHAN,
-    "trigram_johnathan_gt_25",
-    "Johnathan",
-    "trigram(Name, 'Johnathan') > 0.25",
-    run_analysis=True,
-)
-# Trigram similarity
-metric_evaluation(
-    con,
-    JOHNATHAN,
-    "trigram_johnathan_gt_.5",
-    "Johnathan",
-    "trigram(Name, 'Johnathan') > 0.5",
-    run_analysis=True,
-)
-# Trigram similarity
-metric_evaluation(
-    con,
-    JOHNATHAN,
-    "trigram_johnathan_gt_75",
-    "Johnathan",
-    "trigram(Name, 'Johnathan') > 0.75",
-    run_analysis=True,
-)
+# # Edit Distance
+# metric_evaluation(
+#     con,
+#     JOHNATHAN,
+#     "edit_johnathan_lt_3",
+#     "Johnathan",
+#     "edit_distance(Name, 'Johnathan') < 3",
+#     run_analysis=True,
+# )
+# # Edit Distance
+# metric_evaluation(
+#     con,
+#     JOHNATHAN,
+#     "edit_johnathan_lt_4",
+#     "Johnathan",
+#     "edit_distance(Name, 'Johnathan') < 4",
+#     run_analysis=True,
+# )
+# # Edit Distance
+# metric_evaluation(
+#     con,
+#     JOHNATHAN,
+#     "edit_johnathan_lt_5",
+#     "Johnathan",
+#     "edit_distance(Name, 'Johnathan') < 5",
+#     run_analysis=True,
+# )
+
+
+# # Trigram similarity
+# metric_evaluation(
+#     con,
+#     JOHNATHAN,
+#     "trigram_johnathan_gt_25",
+#     "Johnathan",
+#     "trigram(Name, 'Johnathan') > 0.25",
+#     run_analysis=True,
+# )
+# # Trigram similarity
+# metric_evaluation(
+#     con,
+#     JOHNATHAN,
+#     "trigram_johnathan_gt_.5",
+#     "Johnathan",
+#     "trigram(Name, 'Johnathan') > 0.5",
+#     run_analysis=True,
+# )
+# # Trigram similarity
+# metric_evaluation(
+#     con,
+#     JOHNATHAN,
+#     "trigram_johnathan_gt_75",
+#     "Johnathan",
+#     "trigram(Name, 'Johnathan') > 0.75",
+#     run_analysis=True,
+# )
 
 
 # --------------------- Katheryne -----------------------
