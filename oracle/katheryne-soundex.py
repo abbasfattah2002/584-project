@@ -13,11 +13,10 @@ with oracledb.connect(
         before = time.time()
         result = cursor.execute(
             "SELECT Year, Name, Gender FROM ssa_names WHERE SOUNDEX(NAME) = SOUNDEX('Katheryne')"
-        )
+        ).fetchall()
         time_elapsed = time.time() - before
 
-        result = set(result.fetchall())
-
+        result = set(result)
         truth = set(cursor.execute("SELECT * FROM katheryne").fetchall())
 
         print(

@@ -15,11 +15,10 @@ with oracledb.connect(
             result = cursor.execute(
                 "SELECT Year, Name, Gender FROM ssa_names WHERE UTL_MATCH.EDIT_DISTANCE(Name, 'Johnathan') < :1",
                 parameters=[i],
-            )
+            ).fetchall()
             time_elapsed = time.time() - before
 
-            result = set(result.fetchall())
-
+            result = set(result)
             truth = set(cursor.execute("SELECT * FROM johnathan").fetchall())
 
             print(
