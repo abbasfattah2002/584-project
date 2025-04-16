@@ -41,7 +41,7 @@ def soundex_evaluation(
     )
 
     print(
-        f"Soundex accuracy for {csv_out_name}: {len(soundex.intersection(truth)) / len(truth) * 100}%\n"
+        f"Soundex accuracy for {csv_out_name}: {len(soundex.intersection(truth))}/{len(truth)} = {len(soundex.intersection(truth)) / len(truth) * 100}%\n"
         f"Soundex false positive count: {len(soundex.difference(truth))}"
     )
 
@@ -92,7 +92,7 @@ def metric_evaluation(
     print(f"Exported {csv_out_name}_results.csv")
 
     print(
-        f"{csv_out_name} accuracy for {csv_out_name}: {len(results.intersection(truth)) / len(truth) * 100:.2f}%\n"
+        f"{csv_out_name} accuracy for {csv_out_name}: {len(results.intersection(truth))}/{len(truth)} = {len(results.intersection(truth)) / len(truth) * 100:.2f}%\n"
         f"{csv_out_name} false positives: {len(results.difference(truth))}"
     )
 
