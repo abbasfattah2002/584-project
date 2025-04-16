@@ -120,4 +120,5 @@ def register(con):
     con.create_function("trigram", trigram, [VARCHAR, VARCHAR], FLOAT)
     con.create_function("custom_union", custom_union, [VARCHAR, VARCHAR], bool)
     con.create_function("custom_metric", custom_metric, [VARCHAR, VARCHAR], bool)
+    con.create_function("tuned_metric", tuned_metric, [VARCHAR, VARCHAR], bool)
     con.create_function("custom_intersect", custom_intersect, [VARCHAR, VARCHAR], bool)

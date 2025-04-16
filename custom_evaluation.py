@@ -72,27 +72,27 @@ def metric_evaluation(
     con.execute("PRAGMA enable_profile")
 
     if threshold is not None:
-        results = set(
-            con.execute(
-                f"""
-                SELECT Year, Name, Gender FROM ssa_names
-                WHERE {metric_sql} AND Name != '{reference_name}'
-                """
-            ).fetchall()
+        results_query = con.sql(
+            f"""
+            SELECT Year, Name, Gender FROM ssa_names
+            WHERE {metric_sql} AND Name != '{reference_name}'
+            """
         )
     else:
-        # Use raw metric if no thresholding needed (e.g., Soundex equality)
-        results = set(
-            con.execute(
-                f"""
-                SELECT Year, Name, Gender FROM ssa_names
-                WHERE {metric_sql}
-                """
-            ).fetchall()
+        results_query = con.sql(
+            f"""
+            SELECT Year, Name, Gender FROM ssa_names
+            WHERE {metric_sql}
+            """
         )
 
+    results = set(results_query.fetchall())
+    results_query_df = results_query.df()
+    results_query_df.to_csv(f"names/{csv_out_name}_results.csv", index=False)
+    print(f"Exported {csv_out_name}_results.csv")
+
     print(
-        f"{csv_out_name} accuracy: {len(results.intersection(truth)) / len(truth) * 100:.2f}%\n"
+        f"{csv_out_name} True positives: {len(results.intersection(truth))}\n"
         f"{csv_out_name} false positives: {len(results.difference(truth))}"
     )
 
@@ -103,16 +103,16 @@ register(con)
 # Create a table from a CSV
 con.execute(
     """
-			CREATE TABLE ssa_names  (
-				Year INTEGER,
-				Name VARCHAR,
-				Gender CHAR,
-				Count INTEGER
-			);
-			COPY ssa_names FROM 'fuzzed_fixed_ssa_data2.csv'
-			"""
+    CREATE TABLE ssa_names  (
+        Year INTEGER,
+        Name VARCHAR,
+        Gender CHAR,
+        Count INTEGER
+    );
+    COPY ssa_names FROM 'fuzzed_fixed_ssa_data2.csv'
+    """
 )
-
+# select file above
 # --------------------- JOHNATHAN -----------------------
 
 # Custom Union similarity
@@ -132,6 +132,26 @@ metric_evaluation(
     "custom_intersect_johnathan",
     "Johnathan",
     "custom_intersect(Name, 'Johnathan')",
+    run_analysis=True,
+)
+
+# Custom Metric similarity
+metric_evaluation(
+    con,
+    JOHNATHAN,
+    "custom_metric_johnathan",
+    "Johnathan",
+    "custom_metric(Name, 'Johnathan')",
+    run_analysis=True,
+)
+
+# Tuned Metric similarity
+metric_evaluation(
+    con,
+    JOHNATHAN,
+    "tuned_metric_johnathan",
+    "Johnathan",
+    "tuned_metric(Name, 'Johnathan')",
     run_analysis=True,
 )
 
@@ -155,5 +175,25 @@ metric_evaluation(
     "custom_intersect_katheryne",
     "katheryne",
     "custom_intersect(Name, 'katheryne')",
+    run_analysis=True,
+)
+
+# Custom metric similarity
+metric_evaluation(
+    con,
+    KATHERYNE,
+    "custom_metric_katheryne",
+    "katheryne",
+    "custom_metric(Name, 'katheryne')",
+    run_analysis=True,
+)
+
+# Tuned metric similarity
+metric_evaluation(
+    con,
+    KATHERYNE,
+    "tuned_metric_katheryne",
+    "katheryne",
+    "tuned_metric(Name, 'katheryne')",
     run_analysis=True,
 )
