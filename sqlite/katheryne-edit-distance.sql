@@ -3,11 +3,11 @@
 .load './spellfix1'
 
 .timer ON
-SELECT Year, Name, Gender FROM ssa_names WHERE editdist3(Name, 'Katheryne') < 550;
+SELECT Year, Name, Gender FROM ssa_names WHERE editdist3(Name, 'Katheryne') < 300;
 .timer OFF
 
 CREATE TEMP TABLE temp AS
-SELECT Year, Name, Gender FROM ssa_names WHERE editdist3(Name, 'Katheryne') < 550;
+SELECT Year, Name, Gender FROM ssa_names WHERE editdist3(Name, 'Katheryne') < 300;
 
 SELECT 'Accuracy: ' ||
 	(SELECT COUNT(*) FROM temp t

@@ -1,6 +1,6 @@
 CREATE EXTENSION IF NOT EXISTS fuzzystrmatch;
 
-EXPLAIN ANALYZE SELECT Year, Name, Gender FROM ssa_names WHERE levenshtein(Name, 'Johnathan') < 3;
+EXPLAIN ANALYZE SELECT Year, Name, Gender FROM ssa_names WHERE levenshtein(Name, 'Johnathan') < 4;
 
 CREATE TEMP TABLE temp AS SELECT Year, Name, Gender FROM ssa_names WHERE levenshtein(Name, 'Johnathan') < 4;
 
