@@ -116,93 +116,93 @@ con.execute(
 
 # --------------------- JOHNATHAN -----------------------
 
-# soundex_evaluation(con, JOHNATHAN, "soundex_johnathan", True)
+soundex_evaluation(con, JOHNATHAN, "soundex_johnathan", True)
 
-# # Jaro-Winkler
-# metric_evaluation(
-#     con,
-#     JOHNATHAN,
-#     "jaro_johnathan_85",
-#     "Johnathan",
-#     "jaro_winkler(Name, 'Johnathan') > 0.85",
-#     run_analysis=True,
-# )
-# # Jaro-Winkler
-# metric_evaluation(
-#     con,
-#     JOHNATHAN,
-#     "jaro_johnathan_90",
-#     "Johnathan",
-#     "jaro_winkler(Name, 'Johnathan') > 0.90",
-#     run_analysis=True,
-# )
-# # Jaro-Winkler
-# metric_evaluation(
-#     con,
-#     JOHNATHAN,
-#     "jaro_johnathan_95",
-#     "Johnathan",
-#     "jaro_winkler(Name, 'Johnathan') > 0.95",
-#     run_analysis=True,
-# )
-
-
-# # Edit Distance
-# metric_evaluation(
-#     con,
-#     JOHNATHAN,
-#     "edit_johnathan_lt_3",
-#     "Johnathan",
-#     "edit_distance(Name, 'Johnathan') < 3",
-#     run_analysis=True,
-# )
-# # Edit Distance
-# metric_evaluation(
-#     con,
-#     JOHNATHAN,
-#     "edit_johnathan_lt_4",
-#     "Johnathan",
-#     "edit_distance(Name, 'Johnathan') < 4",
-#     run_analysis=True,
-# )
-# # Edit Distance
-# metric_evaluation(
-#     con,
-#     JOHNATHAN,
-#     "edit_johnathan_lt_5",
-#     "Johnathan",
-#     "edit_distance(Name, 'Johnathan') < 5",
-#     run_analysis=True,
-# )
+# Jaro-Winkler
+metric_evaluation(
+    con,
+    JOHNATHAN,
+    "jaro_johnathan_85",
+    "Johnathan",
+    "jaro_winkler(Name, 'Johnathan') > 0.85",
+    run_analysis=True,
+)
+# Jaro-Winkler
+metric_evaluation(
+    con,
+    JOHNATHAN,
+    "jaro_johnathan_90",
+    "Johnathan",
+    "jaro_winkler(Name, 'Johnathan') > 0.90",
+    run_analysis=True,
+)
+# Jaro-Winkler
+metric_evaluation(
+    con,
+    JOHNATHAN,
+    "jaro_johnathan_95",
+    "Johnathan",
+    "jaro_winkler(Name, 'Johnathan') > 0.95",
+    run_analysis=True,
+)
 
 
-# # Trigram similarity
-# metric_evaluation(
-#     con,
-#     JOHNATHAN,
-#     "trigram_johnathan_gt_25",
-#     "Johnathan",
-#     "trigram(Name, 'Johnathan') > 0.25",
-#     run_analysis=True,
-# )
-# # Trigram similarity
-# metric_evaluation(
-#     con,
-#     JOHNATHAN,
-#     "trigram_johnathan_gt_.5",
-#     "Johnathan",
-#     "trigram(Name, 'Johnathan') > 0.5",
-#     run_analysis=True,
-# )
-# # Trigram similarity
-# metric_evaluation(
-#     con,
-#     JOHNATHAN,
-#     "trigram_johnathan_gt_75",
-#     "Johnathan",
-#     "trigram(Name, 'Johnathan') > 0.75",
-#     run_analysis=True,
-# )
+# Edit Distance
+metric_evaluation(
+    con,
+    JOHNATHAN,
+    "edit_johnathan_lt_3",
+    "Johnathan",
+    "edit_distance(Name, 'Johnathan') < 3",
+    run_analysis=True,
+)
+# Edit Distance
+metric_evaluation(
+    con,
+    JOHNATHAN,
+    "edit_johnathan_lt_4",
+    "Johnathan",
+    "edit_distance(Name, 'Johnathan') < 4",
+    run_analysis=True,
+)
+# Edit Distance
+metric_evaluation(
+    con,
+    JOHNATHAN,
+    "edit_johnathan_lt_5",
+    "Johnathan",
+    "edit_distance(Name, 'Johnathan') < 5",
+    run_analysis=True,
+)
+
+
+# Trigram similarity
+metric_evaluation(
+    con,
+    JOHNATHAN,
+    "trigram_johnathan_gt_25",
+    "Johnathan",
+    "trigram(Name, 'Johnathan') > 0.25",
+    run_analysis=True,
+)
+# Trigram similarity
+metric_evaluation(
+    con,
+    JOHNATHAN,
+    "trigram_johnathan_gt_.5",
+    "Johnathan",
+    "trigram(Name, 'Johnathan') > 0.5",
+    run_analysis=True,
+)
+# Trigram similarity
+metric_evaluation(
+    con,
+    JOHNATHAN,
+    "trigram_johnathan_gt_75",
+    "Johnathan",
+    "trigram(Name, 'Johnathan') > 0.75",
+    run_analysis=True,
+)
 
 
 # --------------------- Katheryne -----------------------
