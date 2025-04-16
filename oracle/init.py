@@ -1,5 +1,6 @@
 import oracledb
 import csv
+from pathlib import Path
 
 un = "sys"
 cs = "localhost:1521/XEPDB1"
@@ -49,7 +50,9 @@ with oracledb.connect(
         )
         print("Created katheryne")
 
-        with open("fixed_ssa_data.csv", newline="") as csv_file:
+        project_dir = Path(__file__).parent.parent
+
+        with open(project_dir/"fixed_ssa_data.csv", newline="") as csv_file:
             BATCH_SIZE = 10000
             rows = csv.reader(csv_file)
             next(rows, None)  # Skip header
@@ -58,14 +61,14 @@ with oracledb.connect(
             for row in rows:
                 data.append(tuple(row))
                 if len(data) % BATCH_SIZE == 0:
-                    cursor.execute(insert_sql, parameters=data)
+                    cursor.executemany(insert_sql, parameters=data)
                     data = []
             if data:
-                cursor.execute(insert_sql, parameters=data)
+                cursor.executemany(insert_sql, parameters=data)
             
             print(f"{cursor.execute("SELECT COUNT(*) FROM ssa_names").fetchone()} rows inserted into ssa_names")
 
-        with open("names/johnathan.csv", newline="") as csv_file:
+        with open(project_dir/"names/johnathan.csv", newline="") as csv_file:
             rows = csv.reader(csv_file)
             next(rows, None)  # Skip header
             data = []
@@ -75,7 +78,7 @@ with oracledb.connect(
 
             print(f'{cursor.rowcount} rows inserted into johnathan')
         
-        with open("names/katheryne.csv", newline="") as csv_file:
+        with open(project_dir/"names/katheryne.csv", newline="") as csv_file:
             rows = csv.reader(csv_file)
             next(rows, None)  # Skip header
             data = []
