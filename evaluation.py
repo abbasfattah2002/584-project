@@ -180,16 +180,16 @@ metric_evaluation(
 metric_evaluation(
     con,
     JOHNATHAN,
-    "trigram_johnathan_gt_25",
+    "trigram_johnathan_gt_45",
     "Johnathan",
-    "trigram(Name, 'Johnathan') > 0.25",
+    "trigram(Name, 'Johnathan') > 0.45",
     run_analysis=True,
 )
 # Trigram similarity
 metric_evaluation(
     con,
     JOHNATHAN,
-    "trigram_johnathan_gt_.5",
+    "trigram_johnathan_gt_50",
     "Johnathan",
     "trigram(Name, 'Johnathan') > 0.5",
     run_analysis=True,
@@ -198,9 +198,9 @@ metric_evaluation(
 metric_evaluation(
     con,
     JOHNATHAN,
-    "trigram_johnathan_gt_75",
+    "trigram_johnathan_gt_55",
     "Johnathan",
-    "trigram(Name, 'Johnathan') > 0.75",
+    "trigram(Name, 'Johnathan') > 0.55",
     run_analysis=True,
 )
 
@@ -218,6 +218,33 @@ metric_evaluation(
 )
 
 
+# Jaro-Winkler
+metric_evaluation(
+    con,
+    KATHERYNE,
+    "jaro_katheryne_70",
+    "katheryne",
+    "jaro_winkler(Name, 'katheryne') > 0.70",
+    run_analysis=True,
+)
+# Jaro-Winkler
+metric_evaluation(
+    con,
+    KATHERYNE,
+    "jaro_katheryne_75",
+    "katheryne",
+    "jaro_winkler(Name, 'katheryne') > 0.75",
+    run_analysis=True,
+)
+# Jaro-Winkler
+metric_evaluation(
+    con,
+    KATHERYNE,
+    "jaro_katheryne_80",
+    "katheryne",
+    "jaro_winkler(Name, 'katheryne') > 0.80",
+    run_analysis=True,
+)
 # Jaro-Winkler
 metric_evaluation(
     con,
@@ -276,6 +303,15 @@ metric_evaluation(
 )
 
 
+# Trigram similarity
+metric_evaluation(
+    con,
+    KATHERYNE,
+    "trigram_katheryne_gt_15",
+    "katheryne",
+    "trigram(Name, 'katheryne') > 0.15",
+    run_analysis=True,
+)
 # Trigram similarity
 metric_evaluation(
     con,
