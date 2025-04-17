@@ -14,8 +14,7 @@ Put an X inside the checkbox when it's done
 	- [X] Microsoft SQL Server
 	- [X] sqlite
 	- [X] Oracle
-- [ ] Choose metric+thresholds for the horizontal comparison
-- [ ] Create fuzzed name dataset (dataset with typos) (optional?)
+- [X] Choose metric+thresholds for the horizontal comparison
+- [X] Create fuzzed name dataset (dataset with typos) (optional?)
 - [X] Implement Union/Intersect custom similarity metric
-- [ ] C++ udfs(?)
 - [X] Find out what we can pull from the profiler (kinda?)

@@ -8,8 +8,7 @@ import jellyfish
 
 def edit_distance(a: str, b: str) -> int:
     # levenshtein distance
-    s = editdistance.eval(a, b)
-    return s
+    return editdistance.eval(a, b)
 
 
 def soundex(s: str) -> str:
@@ -18,8 +17,7 @@ def soundex(s: str) -> str:
 
 def jaro_winkler(a: str, b: str) -> float:
     # jaro-winkler distance
-    s = jaro.jaro_winkler_metric(a, b)
-    return s
+    return jaro.jaro_winkler_metric(a, b)
 
 
 def get_trigrams_from_word(word: str) -> set[str]:
@@ -60,23 +58,18 @@ def custom_union(a: str, b: str) -> bool:
 
 
 def custom_intersect(a: str, b: str) -> bool:
-    if (
+    return (
         (edit_distance(a, b) < 5)
         and (edit_distance(soundex(a), soundex(b)) < 5)
         and (jaro_winkler(a, b) > 0.5)
         and (trigram(a, b) > 0.5)
-    ):
-        return True
-    return False
+    )
 
 
 def tuned_metric(a: str, b: str) -> bool:
     if (edit_distance(a, b) / max(len(a), len(b)) > 0.333335) or (trigram(a, b) < 0.1):
         return False
-    if jaro_winkler(a, b) > 0.74995:
-        if edit_distance(soundex(a), soundex(b)) < 1.1:
-            return True
-    return False
+    return jaro_winkler(a, b) > 0.74995 and edit_distance(soundex(a), soundex(b)) < 1.1
 
 
 # best design while maintaining 90% or above accuracy:
@@ -90,14 +83,12 @@ def tuned_metric(a: str, b: str) -> bool:
 
 # new
 def custom_metric(a: str, b: str) -> bool:
-    if (
+    return(
         (trigram(a, b) < 0.0555)
         or (jaro_winkler(a, b) < 0.6875)
         or (edit_distance(a, b) / max(len(a), len(b)) > 0.6675)
         or (edit_distance(soundex(a), soundex(b)) > 1)
-    ):
-        return False
-    return True
+    )
 
 
 # trigram:
