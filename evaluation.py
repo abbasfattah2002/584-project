@@ -3,7 +3,6 @@ from udfs import register
 
 JOHNATHAN = "J[aeou]{1,2}[h]?n{1,2}[aeio]{0,2}[t]{1,2}[h]?[aeio]{0,2}n"
 KATHERYNE = "[CK][ae]th[ae]?r[eiy]n{1,2}e?"
-RYAN = "R[iy]a[n]{1,2}e?"
 
 
 def soundex_evaluation(
@@ -127,7 +126,6 @@ metric_evaluation(
     "jaro_winkler(Name, 'Johnathan') > 0.85",
     run_analysis=True,
 )
-# Jaro-Winkler
 metric_evaluation(
     con,
     JOHNATHAN,
@@ -136,7 +134,6 @@ metric_evaluation(
     "jaro_winkler(Name, 'Johnathan') > 0.90",
     run_analysis=True,
 )
-# Jaro-Winkler
 metric_evaluation(
     con,
     JOHNATHAN,
@@ -156,7 +153,6 @@ metric_evaluation(
     "edit_distance(Name, 'Johnathan') < 3",
     run_analysis=True,
 )
-# Edit Distance
 metric_evaluation(
     con,
     JOHNATHAN,
@@ -165,7 +161,6 @@ metric_evaluation(
     "edit_distance(Name, 'Johnathan') < 4",
     run_analysis=True,
 )
-# Edit Distance
 metric_evaluation(
     con,
     JOHNATHAN,
@@ -185,7 +180,6 @@ metric_evaluation(
     "trigram(Name, 'Johnathan') > 0.45",
     run_analysis=True,
 )
-# Trigram similarity
 metric_evaluation(
     con,
     JOHNATHAN,
@@ -194,7 +188,6 @@ metric_evaluation(
     "trigram(Name, 'Johnathan') > 0.5",
     run_analysis=True,
 )
-# Trigram similarity
 metric_evaluation(
     con,
     JOHNATHAN,
@@ -226,7 +219,6 @@ metric_evaluation(
     "jaro_winkler(Name, 'Katheryne') > 0.70",
     run_analysis=True,
 )
-# Jaro-Winkler
 metric_evaluation(
     con,
     KATHERYNE,
@@ -235,7 +227,6 @@ metric_evaluation(
     "jaro_winkler(Name, 'Katheryne') > 0.75",
     run_analysis=True,
 )
-# Jaro-Winkler
 metric_evaluation(
     con,
     KATHERYNE,
@@ -244,7 +235,6 @@ metric_evaluation(
     "jaro_winkler(Name, 'Katheryne') > 0.80",
     run_analysis=True,
 )
-# Jaro-Winkler
 metric_evaluation(
     con,
     KATHERYNE,
@@ -253,7 +243,6 @@ metric_evaluation(
     "jaro_winkler(Name, 'Katheryne') > 0.85",
     run_analysis=True,
 )
-# Jaro-Winkler
 metric_evaluation(
     con,
     KATHERYNE,
@@ -262,7 +251,6 @@ metric_evaluation(
     "jaro_winkler(Name, 'Katheryne') > 0.90",
     run_analysis=True,
 )
-# Jaro-Winkler
 metric_evaluation(
     con,
     KATHERYNE,
@@ -282,7 +270,6 @@ metric_evaluation(
     "edit_distance(Name, 'Katheryne') < 3",
     run_analysis=True,
 )
-# Edit Distance
 metric_evaluation(
     con,
     KATHERYNE,
@@ -291,7 +278,6 @@ metric_evaluation(
     "edit_distance(Name, 'Katheryne') < 4",
     run_analysis=True,
 )
-# Edit Distance
 metric_evaluation(
     con,
     KATHERYNE,
@@ -300,6 +286,7 @@ metric_evaluation(
     "edit_distance(Name, 'Katheryne') < 5",
     run_analysis=True,
 )
+
 
 # Trigram similarity
 metric_evaluation(
@@ -310,7 +297,6 @@ metric_evaluation(
     "trigram(Name, 'Katheryne') > 0.3",
     run_analysis=True,
 )
-# Trigram similarity
 metric_evaluation(
     con,
     KATHERYNE,
@@ -319,7 +305,6 @@ metric_evaluation(
     "trigram(Name, 'Katheryne') > 0.35",
     run_analysis=True,
 )
-# Trigram similarity
 metric_evaluation(
     con,
     KATHERYNE,
@@ -328,7 +313,6 @@ metric_evaluation(
     "trigram(Name, 'Katheryne') > 0.4",
     run_analysis=True,
 )
-# Trigram similarity
 metric_evaluation(
     con,
     KATHERYNE,

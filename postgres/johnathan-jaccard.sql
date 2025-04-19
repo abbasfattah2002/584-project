@@ -1,8 +1,8 @@
 CREATE EXTENSION IF NOT EXISTS pg_trgm;
 
-EXPLAIN ANALYZE SELECT Year, Name, Gender FROM ssa_names WHERE similarity(Name, 'Johnathan') > 0.25;
+EXPLAIN ANALYZE SELECT Year, Name, Gender FROM ssa_names WHERE similarity(Name, 'Johnathan') > 0.45;
 
-CREATE TEMP TABLE temp AS SELECT Year, Name, Gender FROM ssa_names WHERE similarity(Name, 'Johnathan') > 0.25;
+CREATE TEMP TABLE temp AS SELECT Year, Name, Gender FROM ssa_names WHERE similarity(Name, 'Johnathan') > 0.45;
 
 SELECT 'Accuracy: ' ||
 	(SELECT COUNT(*) FROM temp t
@@ -19,4 +19,4 @@ SELECT 'False Positives: ' ||
 
 DROP TABLE temp;
 
-\copy ( SELECT Year, Name, Gender FROM ssa_names WHERE similarity(Name, 'Johnathan') > 0.25 ORDER BY Year ASC, Name ASC, Gender ASC) TO './postgres/johnathan-jaccard-gt0.25.csv' WITH CSV DELIMITER ',';
+\copy ( SELECT Year, Name, Gender FROM ssa_names WHERE similarity(Name, 'Johnathan') > 0.45 ORDER BY Year ASC, Name ASC, Gender ASC) TO './postgres/johnathan-jaccard-gt0.45.csv' WITH CSV DELIMITER ',';
