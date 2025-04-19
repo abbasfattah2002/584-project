@@ -10,7 +10,7 @@ with oracledb.connect(
     user=un, password=pw, dsn=cs, mode=oracledb.AUTH_MODE_SYSDBA
 ) as connection:
     with connection.cursor() as cursor:
-        for i in [4, 5]:
+        for i in [3, 4, 5]:
             before = time.time()
             result = cursor.execute(
                 "SELECT Year, Name, Gender FROM ssa_names WHERE UTL_MATCH.EDIT_DISTANCE(Name, 'Katheryne') < :1",
