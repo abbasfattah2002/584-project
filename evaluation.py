@@ -204,7 +204,6 @@ metric_evaluation(
     run_analysis=True,
 )
 
-
 # --------------------- Katheryne -----------------------
 
 # Soundex
@@ -224,7 +223,7 @@ metric_evaluation(
     KATHERYNE,
     "jaro_katheryne_70",
     "katheryne",
-    "jaro_winkler(Name, 'katheryne') > 0.70",
+    "jaro_winkler(Name, 'Katheryne') > 0.70",
     run_analysis=True,
 )
 # Jaro-Winkler
@@ -233,7 +232,7 @@ metric_evaluation(
     KATHERYNE,
     "jaro_katheryne_75",
     "katheryne",
-    "jaro_winkler(Name, 'katheryne') > 0.75",
+    "jaro_winkler(Name, 'Katheryne') > 0.75",
     run_analysis=True,
 )
 # Jaro-Winkler
@@ -242,7 +241,7 @@ metric_evaluation(
     KATHERYNE,
     "jaro_katheryne_80",
     "katheryne",
-    "jaro_winkler(Name, 'katheryne') > 0.80",
+    "jaro_winkler(Name, 'Katheryne') > 0.80",
     run_analysis=True,
 )
 # Jaro-Winkler
@@ -251,7 +250,7 @@ metric_evaluation(
     KATHERYNE,
     "jaro_katheryne_85",
     "katheryne",
-    "jaro_winkler(Name, 'katheryne') > 0.85",
+    "jaro_winkler(Name, 'Katheryne') > 0.85",
     run_analysis=True,
 )
 # Jaro-Winkler
@@ -260,7 +259,7 @@ metric_evaluation(
     KATHERYNE,
     "jaro_katheryne_90",
     "katheryne",
-    "jaro_winkler(Name, 'katheryne') > 0.90",
+    "jaro_winkler(Name, 'Katheryne') > 0.90",
     run_analysis=True,
 )
 # Jaro-Winkler
@@ -269,7 +268,7 @@ metric_evaluation(
     KATHERYNE,
     "jaro_katheryne_95",
     "katheryne",
-    "jaro_winkler(Name, 'katheryne') > 0.95",
+    "jaro_winkler(Name, 'Katheryne') > 0.95",
     run_analysis=True,
 )
 
@@ -280,7 +279,7 @@ metric_evaluation(
     KATHERYNE,
     "edit_katheryne_lt_3",
     "katheryne",
-    "edit_distance(Name, 'katheryne') < 3",
+    "edit_distance(Name, 'Katheryne') < 3",
     run_analysis=True,
 )
 # Edit Distance
@@ -289,7 +288,7 @@ metric_evaluation(
     KATHERYNE,
     "edit_katheryne_lt_4",
     "katheryne",
-    "edit_distance(Name, 'katheryne') < 4",
+    "edit_distance(Name, 'Katheryne') < 4",
     run_analysis=True,
 )
 # Edit Distance
@@ -298,44 +297,43 @@ metric_evaluation(
     KATHERYNE,
     "edit_katheryne_lt_5",
     "katheryne",
-    "edit_distance(Name, 'katheryne') < 5",
+    "edit_distance(Name, 'Katheryne') < 5",
     run_analysis=True,
 )
 
-
 # Trigram similarity
 metric_evaluation(
     con,
     KATHERYNE,
-    "trigram_katheryne_gt_15",
+    "trigram_katheryne_gt_30",
     "katheryne",
-    "trigram(Name, 'katheryne') > 0.15",
+    "trigram(Name, 'Katheryne') > 0.3",
     run_analysis=True,
 )
 # Trigram similarity
 metric_evaluation(
     con,
     KATHERYNE,
-    "trigram_katheryne_gt_25",
+    "trigram_katheryne_gt_35",
     "katheryne",
-    "trigram(Name, 'katheryne') > 0.25",
+    "trigram(Name, 'Katheryne') > 0.35",
     run_analysis=True,
 )
 # Trigram similarity
 metric_evaluation(
     con,
     KATHERYNE,
-    "trigram_katheryne_gt_5",
+    "trigram_katheryne_gt_40",
     "katheryne",
-    "trigram(Name, 'katheryne') > 0.5",
+    "trigram(Name, 'Katheryne') > 0.4",
     run_analysis=True,
 )
 # Trigram similarity
 metric_evaluation(
     con,
     KATHERYNE,
-    "trigram_katheryne_gt_75",
+    "trigram_katheryne_gt_50",
     "katheryne",
-    "trigram(Name, 'katheryne') > 0.75",
+    "trigram(Name, 'Katheryne') > 0.5",
     run_analysis=True,
 )
