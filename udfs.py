@@ -83,7 +83,7 @@ def tuned_metric(a: str, b: str) -> bool:
 
 # new
 def custom_metric(a: str, b: str) -> bool:
-    return (
+    return not (
         (trigram(a, b) < 0.0555)
         or (jaro_winkler(a, b) < 0.6875)
         or (edit_distance(a, b) / max(len(a), len(b)) > 0.6675)
