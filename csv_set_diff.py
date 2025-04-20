@@ -1,28 +1,54 @@
 import pandas as pd
+import os
+import glob
 
-# Load the two CSV files
-ground_truth_df = pd.read_csv("names/katheryne.csv")[["Name"]]
-soundex_results_df = pd.read_csv("names/soundex_katheryne_results.csv")[["Name"]]
+# Path setup
+NAMES_DIR = "names"
+KATHERINE_TRUTH = os.path.join(NAMES_DIR, "katheryne.csv")
+JOHNATHAN_TRUTH = os.path.join(NAMES_DIR, "johnathan.csv")
 
-print(len(ground_truth_df))
-print(len(soundex_results_df))
+# Load both truth datasets once
+kath_truth_df = pd.read_csv(KATHERINE_TRUTH)[["Name"]]
+john_truth_df = pd.read_csv(JOHNATHAN_TRUTH)[["Name"]]
 
-# Normalize names (strip whitespace, lowercase)
-ground_truth_set = set(ground_truth_df["Name"].str.strip().str.lower())
-soundex_set = set(soundex_results_df["Name"].str.strip().str.lower())
+# Normalize to sets of lowercase names
+kath_truth_set = set(kath_truth_df["Name"].str.strip().str.lower())
+john_truth_set = set(john_truth_df["Name"].str.strip().str.lower())
 
-# Set difference calculations
-false_positives = soundex_set - ground_truth_set
-false_negatives = ground_truth_set - soundex_set
+# Loop through all *_results.csv files
+result_files = sorted(glob.glob(os.path.join(NAMES_DIR, "*_results.csv")))
 
-# Convert to DataFrames
-false_positives_df = pd.DataFrame(sorted(false_positives), columns=["False Positives"])
-false_negatives_df = pd.DataFrame(sorted(false_negatives), columns=["False Negatives"])
+for result_path in result_files:
+    base_name = os.path.basename(result_path).replace("_results.csv", "")
 
-# Save to CSV
-false_positives_df.to_csv("false_positives.csv", index=False)
-false_negatives_df.to_csv("false_negatives.csv", index=False)
-print(f"# False Positives: {len(false_positives)}")
-print(f"# False Negatives: {len(false_negatives)}")
+    # Load result file
+    result_df = pd.read_csv(result_path)
+    if "Name" not in result_df.columns:
+        print(f"❌ Skipping {base_name} — no 'Name' column")
+        continue
 
-print("Saved false_positives.csv and false_negatives.csv")
+    result_set = set(result_df["Name"].str.strip().str.lower())
+
+    # Choose correct ground truth
+    if "katheryne" in base_name:
+        truth_set = kath_truth_set
+    elif "johnathan" in base_name:
+        truth_set = john_truth_set
+    else:
+        print(f"❌ Skipping {base_name} — can't determine target name")
+        continue
+
+    # Compute FP and FN
+    false_positives = result_set - truth_set
+    false_negatives = truth_set - result_set
+
+    # Write outputs
+    fp_path = os.path.join(NAMES_DIR, f"{base_name}_false_positives.csv")
+    fn_path = os.path.join(NAMES_DIR, f"{base_name}_false_negatives.csv")
+
+    pd.DataFrame(sorted(false_positives), columns=["Name"]).to_csv(fp_path, index=False)
+    pd.DataFrame(sorted(false_negatives), columns=["Name"]).to_csv(fn_path, index=False)
+
+    print(f"✅ {base_name}")
+    print(f"   Results: {len(result_set)} | Truth: {len(truth_set)}")
+    print(f"   False Positives: {len(false_positives)} | False Negatives: {len(false_negatives)}")
