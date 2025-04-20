@@ -1,5 +1,6 @@
 # Main Sources of data
 - `fixed_ssa_data.csv` - master list of names
+- `fuzzed_fixed_ssa_data2.csv` - Fuzzed dataset, names with typos included
 - `names/johnathan.csv` - ground truth "Johnathan" set
 - `names/katheryne.csv` - ground truth "Katheryne" set
 
