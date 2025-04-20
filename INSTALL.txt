@@ -1,7 +1,7 @@
-# Your INSTALL.txt file should provide the detailed steps required to compile your source code.
+<!-- Your INSTALL.txt file should provide the detailed steps required to compile your source code. -->
 
 # DuckDB
-- Create a virtual environment
+- Create a Python virtual environment
 ```bash
 pip install requirements.txt # Includes duckdb package
 ```
@@ -15,23 +15,16 @@ docker compose up # Run to start container
 
 # PostgreSQL
 ```bash
-sudo apt install postgresql
+sudo apt install postgresql # https://www.postgresql.org/download/ if needed
 sudo systemctl start postgresql.service
+createdb <DBNAME>
 ```
 
 # SQL Server
 - Install SQL Server Management Studio (https://aka.ms/ssmsfullsetup)
-- Create a database called CSE584
-- Import these flat files:
-  - `fixed_ssa_data.csv` as ssa_names
-  - `names/johnathan.csv` as johnathan
-  - `names/katheryne.csv` as katheryne
 
 # sqlite
 ```bash
-sudo apt-get install sqlite3
-cd sqlite/
-sqlite3 data.db < init.sql # Load the data into data.db
-./sqlite_evaluate.sh # Note it doesn't run with all parameters for a given similarity metric
+sudo apt-get install sqlite3 # https://sqlite.org/download.html if needed
 ```
 
