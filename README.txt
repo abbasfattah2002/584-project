@@ -8,6 +8,7 @@
 ## DuckDB
 ```bash
 python3 evaluation.py # Runs all DuckDB queries
+python3 custom_evaluation.py # Runs all DuckDB queries for the custom metrics
 python csv_set_diff.py # Create set of FP and FN names for each similarity metric
 ```
 
