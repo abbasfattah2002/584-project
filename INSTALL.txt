@@ -1,9 +1,7 @@
-<!-- Your INSTALL.txt file should provide the detailed steps required to compile your source code. -->
-
 # DuckDB
 - Create a Python virtual environment
 ```bash
-pip install requirements.txt # Includes duckdb package
+pip install requirements.txt # Includes duckdb module, among other required modules
 ```
 
 # Oracle

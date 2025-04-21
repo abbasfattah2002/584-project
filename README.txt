@@ -39,9 +39,12 @@ cd sqlite/
 sqlite3 data.db < init.sql # Load the data into data.db
 ./sqlite_evaluate.sh # Note it doesn't run with all parameters for a given similarity metric
 ```
+- **Do not delete `spellfix1.so`.**
+  - This file enables the spellfix1 virtual table, and therefore the editdist3 function.
+  - I had to compile this from source, and the latest source version is missing a header file required for compilation to work.
 
 # Source Code Explanation
-- Other than DuckDB, all other DBMSs have their own folder
+- Other than DuckDB, all other DBMSs have their own folder consisting of scripts and results.
 
 ## DuckDB
 - `udfs.py` contains implementations of each similarity metric and custom fuzzy logic
