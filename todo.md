@@ -8,7 +8,7 @@ Put an X inside the checkbox when it's done
 	- [X] sqlite
 	- [X] Oracle
 - [X] Figure out how to dump DuckDB results to csv
-- [ ] Create script for comparing results from csv's
+- [X] Create script for comparing results from csv's
 - [X] Create queries for vertical comparisons (for each DBMS)
 	- [X] PostgreSQL
 	- [X] Microsoft SQL Server
